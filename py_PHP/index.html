@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <title>py_PHP</title>
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+        <script src="assets/js/angular.min.js"></script>
+    </head>
+    <body ng-app="myApp" ng-controller="myCtrl" ng-init="temp()">
+        <h1 style="margin: 20px, 10%, 10%, 10%">Python controlling by PHP</h1> 
+        <span style="margin-left:10px;">Load ID</span>
+        <input  ng-model="addID"/>
+        <button ng-click="addData(addID)" style="margin-bottom: 30px;"> Add</button>
+        <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Status</th>
+                <th>Loan ID</th>
+                <th>Links</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="x in data" ng-if="x.run_sta != 'Delete'">
+                <td style="position:center;">{{ $index + 1  }}</td>
+                <td >{{ x.run_sta }}</td>
+                <td style="background-color:#f1f1f1">{{ x.loanID}}</td>
+                <td style="background-color:#f1f1f1" ng-if="x.run_sta == 'Queued'"></td>
+                <td style="background-color:#f1f1f1" ng-if="x.run_sta == 'Queued'"><button ng-click="updateData(x.colID, 'Delete')">delete</button></td>
+                <td style="background-color:#f1f1f1" ng-if="x.run_sta == 'Done'"><button >DownLoad</button></td>
+                <td style="background-color:#f1f1f1" ng-if="x.run_sta == 'Done'"><button ng-click="updateData(x.colID, 'Running')">Restart</button></td>
+                <td style="background-color:#f1f1f1" ng-if="x.run_sta == 'Running' || x.run_sta == 'Error'"></td>
+                <td style="background-color:#f1f1f1" ng-if="x.run_sta == 'Running' || x.run_sta == 'Error'"></td>
+              
+            </tr>
+            </tbody>
+          </table>
+        
+        <script type="text/javascript" src="control/py_PHP.js"></script>
+    </body>
+</html>
